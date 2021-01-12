@@ -3,9 +3,9 @@
   <table class="table table-bordered table-condenced user-table">
     <tr>
       <td>時間管理表</td>
-      <td>指定勤務時間  <%= format_basic_info(@user.basic_time) %></td>
-      <td colspan="3">基本時間  <%= format_basic_info(@user.work_time) %></td>
-      <td>初日</td>
+      <td>指定勤務時間  <%= format_basic_info(@user.work_time) %></td>
+      <td colspan="3">基本時間  <%= format_basic_info(@user.basic_time) %></td>
+      <td>初日  <%= l(@first_day, format: :short) %></td>
     </tr>
     <tr>
       <td>所属  <%= @user.department.present? ? @user.department : "未所属" %></td>
@@ -13,7 +13,7 @@
       <td>コード</td>
       <td></td>
       <td>出勤日数</td>
-      <td>締め</td>
+      <td>締め  <%= l(@last_day, format: :short) %></td>
     </tr>
   </table>
 </div>
@@ -40,17 +40,17 @@
     </thead>
     
     <tbody>
-      <%= (@first_day..@last_day).each do |day| %>
+      <%= @attendances.each do |day| %>
         <tr>
-          <td><%= l(day, format: :short) %></td>
+          <td><%= l(day.worked_on, format: :short) %></td>
           <td>
-            <% if day.wday == 0 %>
-              <font color="red"><%= $days_of_the_week[day.wday] %></font>
-            <% elsif day.wday == 6 %>
-              <font color="blue"><%= $days_of_the_week[day.wday] %></font>
+            <% if day.worked_on.wday == 0 %>
+              <font color="red"><%= $days_of_the_week[day.worked_on.wday] %></font>
+            <% elsif day.worked_on.wday == 6 %>
+              <font color="blue"><%= $days_of_the_week[day.worked_on.wday] %></font>
             <% else %>
-              <%= $days_of_the_week[day.wday] %>
-            <% end %>  
+              <%= $days_of_the_week[day.worked_on.wday] %>
+            <% end %>
           </td>
           <td></td>
           <td></td>
@@ -61,7 +61,7 @@
           <td></td>
           <td></td>
         </tr>
-      <% end %>  
+      <% end %>
     </tbody>
   </table>
 </div>

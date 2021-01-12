@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :current_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
+  before_action :set_one_month, only: :show
   
   
   def index
@@ -10,8 +11,6 @@ class UsersController < ApplicationController
   end
   
   def show
-    @first_day = Date.current.beginning_of_month
-    @last_day = @first_day.end_of_month
   end
   
   def new
