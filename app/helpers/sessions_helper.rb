@@ -1,6 +1,5 @@
 module SessionsHelper
 
-  # 引数に渡されたユーザーオブジェクトでログインします。
   def log_in(user)
     session[:user_id] = user.id
   end
@@ -40,7 +39,6 @@ module SessionsHelper
     user == current_user
   end
 
-  # 現在ログイン中のユーザーがいればtrue、そうでなければfalseを返します。
   def logged_in?
     !current_user.nil?
   end
