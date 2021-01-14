@@ -20,6 +20,10 @@
   }
 }
 
+#body-attendances tr:nth-child(odd) {
+  background: #eee;
+}
+
 .label-signup {
   margin-top: 5px;
 }

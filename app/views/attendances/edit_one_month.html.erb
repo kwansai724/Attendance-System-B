@@ -15,7 +15,7 @@
           <th>指示者</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="body-attendances">
         <% @attendances.each do |day| %>
           <%= f.fields_for "attendances[]", day do |attendance| %>
             <tr>
@@ -52,7 +52,7 @@
   </div>
   
   <div class="center">
-    <%= f.submit "まとめて更新", class: "btn btn-lg btn-primary" %>
+    <%= f.submit "編集を保存する", class: "btn btn-lg btn-primary" %>
     <%= link_to "キャンセル", user_path(date: @first_day), class: "btn btn-lg btn-default" %>
   </div>
 <% end %>  
