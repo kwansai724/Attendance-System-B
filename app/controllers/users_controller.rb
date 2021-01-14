@@ -8,10 +8,7 @@ class UsersController < ApplicationController
   
   
   def index
-    @users = User.paginate(page: params[:page], per_page: 20)
-  end
-  
-  def search
+    @users = User.paginate(page: params[:page], per_page: 20).search(params[:search])
   end
   
   def show
@@ -72,4 +69,6 @@ class UsersController < ApplicationController
     def basic_info_params
       params.require(:user).permit(:basic_time, :work_time)
     end
+    
+    
 end

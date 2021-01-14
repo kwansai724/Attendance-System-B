@@ -13,6 +13,6 @@ module AttendancesHelper
   end
   
   def format_min(time)
-    format(((time / 15).round) * 15)
+    format("%.2d",((time.strftime('%M').to_i / 15).round) * 15)
   end
 end
