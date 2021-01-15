@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   root 'static_pages#top'
   
-  # ログイン機能
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -14,7 +13,6 @@ Rails.application.routes.draw do
       patch 'update_basic_info'
       get 'attendances/edit_one_month'
       patch 'attendances/update_one_month'
-      # get 'search'
     end
     resources :attendances, only: :update
   end
