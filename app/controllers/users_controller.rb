@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def index
     @users = User.paginate(page: params[:page], per_page: 20).search(params[:search])
   end
-  
+
   def show
     @worked_sum = @attendances.where.not(started_at: nil).count
   end
@@ -70,5 +70,15 @@ class UsersController < ApplicationController
       params.require(:user).permit(:basic_time, :work_time)
     end
     
+    def query
+      if params[:user].present? && params[:user][:name]
+        User.where('LOWER(name) LIKE ?', "%#{params[:user][:name].downcase}%")
+      else
+        User.all
+      end
+    end
     
+    #def search
+      #@users = User.search(params[:search])
+    #end
 end

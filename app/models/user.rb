@@ -42,12 +42,11 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
   
-  def User.search(search)
-    if search.present?
+  def self.search(search)
+    if search
       User.where(['name LIKE ?', "%#{search}%"])
     else
       User.all
     end
   end
-
 end
